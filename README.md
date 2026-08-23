@@ -84,11 +84,15 @@ small.
 Each is payable at `mint@<host>` and the bare `_@<host>`. All but moneyer run
 lnurl-mint.
 
-- [mint.forgesworn.dev](https://mint.forgesworn.dev) - Marked evaluation only
-  by its operator, with a 25k sat cap per note.
-- [moneyer.dev](https://moneyer.dev) - The moneyer mint. The page is itself a
-  wallet-grade client: mint a note in the browser, check one, or melt it,
-  without installing anything.
+- [mint.forgesworn.dev](https://mint.forgesworn.dev) - Evaluation only, with a
+  25k sat cap per note. A conformance target, not a service: assume any note
+  on it can be lost.
+- [moneyer.dev](https://moneyer.dev) - The moneyer reference mint. Evaluation
+  only, 10k sat cap per note, fee set at the melt routing floor rather than a
+  margin. The page is itself a wallet-grade client: mint a note in the
+  browser, check one, or melt it, without installing anything. Run to
+  demonstrate the protocol and to grade implementations against - not offered
+  as a place to keep sats.
 - [mint.600.wtf](https://mint.600.wtf) - "600 billion mint", on the `dnilabs`
   node.
 - [lnurl.21mint.me](https://lnurl.21mint.me) - On the Azzamo node.
