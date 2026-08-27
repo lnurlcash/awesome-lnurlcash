@@ -84,9 +84,9 @@ small.
 Each is payable at `mint@<host>` and the bare `_@<host>`. All but moneyer run
 lnurl-mint.
 
-- [mint.forgesworn.dev](https://mint.forgesworn.dev) - Evaluation only, with a
-  25k sat cap per note. A conformance target, not a service: assume any note
-  on it can be lost.
+- [mint.lnurlcash.com](https://mint.lnurlcash.com) - The reference mint,
+  hosted by dni, on the `LNURLmint` node. 17 sat to mint the smallest note,
+  9,974 sat cap per note.
 - [moneyer.dev](https://moneyer.dev) - The moneyer reference mint. Evaluation
   only, 10k sat cap per note, fee set at the melt routing floor rather than a
   margin. The page is itself a wallet-grade client: mint a note in the
@@ -99,9 +99,20 @@ lnurl-mint.
 - [lnurl.21linz.at](https://lnurl.21linz.at) - On the `21linz` node, which
   peers over Tor.
 - [minty.exe.xyz](https://minty.exe.xyz) - Backed by Core Lightning.
+- [mint.forgesworn.dev](https://mint.forgesworn.dev) - **Sunsetting.** Minting
+  and splitting have been refused since 2026-08-27. Notes already issued stay
+  redeemable until 2026-11-25 - rotate one to keep holding it, merge notes
+  together, then melt into a Lightning invoice. Do not point a wallet at it
+  for a new note.
 
 ## Hardware
 
+- [vault.lnurlcash.com](https://vault.lnurlcash.com) - The vault's web
+  installer. Flashes lnurl-vault firmware onto a LilyGo T-Display S3 or the
+  classic T-Display from the browser, with no PlatformIO or ESP-IDF install,
+  and gives an already-flashed board a device console for the wire protocol
+  (`get_info`, `list_notes`, `export_secret`). Needs a Web Serial browser, so
+  Chrome or Edge - Safari and Firefox cannot talk to the board.
 - [lnurl-vault](https://github.com/dni/lnurl-vault) - An ESP32-S3 hardware
   vault. Generates note secrets from a hardware RNG, discloses only their
   hashes until a mint confirms, and gates every plaintext export behind a
