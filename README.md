@@ -55,7 +55,7 @@ still cash it out.
 
 - [lnurl-mint](https://github.com/dni/lnurl-mint) - The reference service, by
   dni. Python and FastAPI, backed by lnd or cln. Mint, rotate, split, merge,
-  melt, optional fees, optional offline verification, and a sunset switch.
+  melt, optional fees, offline verification, and a sunset switch.
 - [moneyer](https://github.com/forgesworn/moneyer) - An independent
   TypeScript implementation, sharing no code with the reference. Backed by
   cln or lnd, stores notes in SQLite by `sha256(k1)` so the database never
