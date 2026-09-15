@@ -121,17 +121,17 @@ lnurl-mint.
 
 ## Libraries
 
-- [lnurlcash-kit](https://github.com/TheCryptoDonkey/lnurlcash-kit) - TypeScript. Extracted from the reference wallet's protocol layer.
-- [lnurlcash-py](https://github.com/TheCryptoDonkey/lnurlcash-py) - Python,
+- [`@lnurlcash/kit`](https://github.com/lnurlcash/lnurl-wallet/tree/main/src/lib) - TypeScript, published directly from the reference wallet's protocol layer.
+- [lnurlcash-py](https://github.com/lnurlcash/lnurlcash-py) - Python,
   sync and async, with a no-I/O protocol layer for other HTTP stacks.
-- [lnurlcash-core](https://github.com/TheCryptoDonkey/lnurlcash-core) - Rust,
+- [lnurlcash-core](https://github.com/lnurlcash/lnurlcash-core) - Rust,
   with UniFFI bindings for Kotlin and Swift.
-- [lnurlcash-kotlin](https://github.com/TheCryptoDonkey/lnurlcash-kotlin) - Kotlin and JVM, over the Rust core.
-- [lnurlcash-go](https://github.com/TheCryptoDonkey/lnurlcash-go) - Go.
+- [lnurlcash-kotlin](https://github.com/lnurlcash/lnurlcash-kotlin) - Kotlin and JVM, over the Rust core.
+- [lnurlcash-go](https://github.com/lnurlcash/lnurlcash-go) - Go.
 
 ## Testing and conformance
 
-- [lnurlcash-conformance](https://github.com/TheCryptoDonkey/lnurlcash-conformance) - Language-neutral test vectors, an adversarial mock mint that can be told to
+- [lnurlcash-conformance](https://github.com/lnurlcash/lnurlcash-conformance) - Language-neutral test vectors, an adversarial mock mint that can be told to
   drop a connection mid-mutation or sign in the wrong byte order, and a grader
   that exits non-zero on a non-compliant service. Run these before you run real
   sats through anything.
@@ -160,9 +160,9 @@ The parts that are easy to get wrong, and where each is explained.
 
 - [Who generates a replacement secret](https://github.com/lnurl/luds/pull/301/files) - The wallet, never the service. A service-issued replacement has,
   structurally, already been seen by that service.
-- [Ambiguous mutations](https://github.com/TheCryptoDonkey/lnurlcash-kit#the-five-things-that-will-cost-you-money) - A rotate that times out may already have burned the input, which makes the
+- [Ambiguous mutations](https://github.com/lnurlcash/lnurl-wallet/tree/main/src/lib#the-five-things-that-will-cost-you-money) - A rotate that times out may already have burned the input, which makes the
   fresh secret the only copy of the money.
-- [HTTP retries](https://github.com/TheCryptoDonkey/lnurlcash-conformance/blob/main/vectors/lifecycle.json) - Every mutation is a GET, and GET is meant to be idempotent. This one is not.
+- [HTTP retries](https://github.com/lnurlcash/lnurlcash-conformance/blob/main/vectors/lifecycle.json) - Every mutation is a GET, and GET is meant to be idempotent. This one is not.
   Named here as a scenario, having caught it in two implementations.
 - [Melt semantics](https://github.com/dni/lnurl-mint#readme) - `OK` means the
   payment is in flight, not that the note is spent. See the reserved and
@@ -172,7 +172,7 @@ The parts that are easy to get wrong, and where each is explained.
   reconcile, never a guess.
 - [Why phoenixd cannot back a mint](https://github.com/forgesworn/moneyer#what-it-is) - Minting needs a funding source that accepts a caller-supplied preimage.
   cln and lnd do; phoenixd and NIP-47 `make_invoice` do not.
-- [Offline verification](https://github.com/TheCryptoDonkey/lnurlcash-conformance/blob/main/vectors/signature.json) - The exact signing scheme, including which end of the signature carries the
+- [Offline verification](https://github.com/lnurlcash/lnurlcash-conformance/blob/main/vectors/signature.json) - The exact signing scheme, including which end of the signature carries the
   recovery id.
 
 ## Contributing
