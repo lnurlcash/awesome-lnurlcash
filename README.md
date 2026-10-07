@@ -50,8 +50,8 @@ still cash it out.
   PWA over one engine, in TypeScript. Writes every replacement secret to disk
   before its hash goes on the wire, parks a timed-out mutation as `ambiguous`
   and settles it with `reconcile`, and can pay mint invoices through NWC.
-- [lnurl-wallet-native](https://github.com/lnurlcash/lnurl-wallet-native) -
-  A desktop wallet in Rust and egui, by dni, over lnurlcash-core. Every note is
+- [lnurl-wallet-native](https://github.com/lnurlcash/lnurl-wallet-native) - A
+  desktop wallet in Rust and egui, by dni, over lnurlcash-core. Every note is
   a key derived from a 12-word seed, so the words alone bring the notes back,
   and a received note is rotated onto a seed key straight away.
 
