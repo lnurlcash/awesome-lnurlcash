@@ -50,12 +50,26 @@ still cash it out.
   PWA over one engine, in TypeScript. Writes every replacement secret to disk
   before its hash goes on the wire, parks a timed-out mutation as `ambiguous`
   and settles it with `reconcile`, and can pay mint invoices through NWC.
+- [lnurl-wallet-native](https://github.com/lnurlcash/lnurl-wallet-native) - A
+  desktop wallet in Rust and egui, by dni, over lnurlcash-core. Every note is
+  a key derived from a 12-word seed, so the words alone bring the notes back,
+  and a received note is rotated onto a seed key straight away.
 
 ## Mints
 
 - [lnurl-mint](https://github.com/dni/lnurl-mint) - The reference service, by
-  dni. Python and FastAPI, backed by lnd or cln. Mint, rotate, split, merge,
-  melt, optional fees, offline verification, and a sunset switch.
+  dni. Python and FastAPI, backed by lnd, cln or spark. Mint, rotate, split,
+  merge, melt, optional fees, offline verification, and a sunset switch.
+- [lnurl-mint-rust](https://github.com/lnurlcash/lnurl-mint-rust) - A Rust
+  rewrite of the reference, by dni, that is its own Lightning node: LDK for
+  Lightning and BDK for the on-chain wallet in one binary, syncing from your
+  bitcoind, with no lnd or cln to run. Settles from LDK's payment events, and
+  answers a melt that cannot route with the reason rather than `OK`. Proven
+  against real nodes on regtest; Rapid Gossip Sync and LSPS2 inbound
+  liquidity are on its plan.
+- [cln-mint](https://github.com/lnurlcash/cln-mint) - A Core Lightning
+  plugin, by dni, that runs the mint inside `lightningd`: the node it runs in
+  is its funding source, invoice watcher and certificate signer.
 - [moneyer](https://github.com/forgesworn/moneyer) - An independent
   TypeScript implementation, sharing no code with the reference. Backed by
   cln or lnd, stores notes in SQLite by `sha256(k1)` so the database never
@@ -128,6 +142,9 @@ lnurl-mint.
   with UniFFI bindings for Kotlin and Swift.
 - [lnurlcash-kotlin](https://github.com/lnurlcash/lnurlcash-kotlin) - Kotlin and JVM, over the Rust core.
 - [lnurlcash-go](https://github.com/lnurlcash/lnurlcash-go) - Go.
+- [lnurlcash-kernel](https://github.com/lnurlcash/kernel) - Python and Rust.
+  Checks that a spend opens its note with Bitcoin Core's own script
+  interpreter, unmodified, through `libbitcoinkernel`.
 
 ## Testing and conformance
 
@@ -170,8 +187,9 @@ The parts that are easy to get wrong, and where each is explained.
 - [Persist before disclose](https://github.com/forgesworn/notecase#the-safety-design) - A wallet's ordering rules, written down: the fresh secret hits disk before
   its hash leaves the machine, and an uncertain outcome is a state to
   reconcile, never a guess.
-- [Why phoenixd cannot back a mint](https://github.com/forgesworn/moneyer#what-it-is) - Minting needs a funding source that accepts a caller-supplied preimage.
-  cln and lnd do; phoenixd and NIP-47 `make_invoice` do not.
+- [Caller-supplied preimages are optional](https://github.com/forgesworn/moneyer#what-it-is) - A note is keyed by the buyer's comment commitment, which the funding source never sees,
+  so a node that mints its own preimages (phoenixd, NIP-47 `make_invoice`) can back a mint. cln and lnd let the mint pick
+  the preimage and refuse an invoice that does not commit to it; the others get after-the-fact checks instead.
 - [Offline verification](https://github.com/lnurlcash/lnurlcash-conformance/blob/main/vectors/signature.json) - The exact signing scheme, including which end of the signature carries the
   recovery id.
 
