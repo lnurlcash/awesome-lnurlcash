@@ -74,6 +74,8 @@ still cash it out.
   TypeScript implementation, sharing no code with the reference. Backed by
   cln or lnd, stores notes in SQLite by `sha256(k1)` so the database never
   holds a spend secret, and runs the conformance grader in its own test suite.
+- [lnurlmint-extension](https://github.com/lnurlcash/lnurlmint-extension) - A LNBits
+  python extension, by Bitkarrot, that runs a lnurlmint as a one click install from inside your LNBits.
 
 ## Live services
 
